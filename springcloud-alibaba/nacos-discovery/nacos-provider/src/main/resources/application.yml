@@ -3,8 +3,30 @@ server:
   port: 8762
 spring:
   application:
-    name: nacos-provider
+    name: eladmin-hbase
   cloud:
     nacos:
       discovery:
-        server-addr: 127.0.0.1:8848
+        server-addr: localhost:8848
+  mvc:
+    async:
+      request-timeout: 160000000
+  datasource:
+      type: com.zaxxer.hikari.HikariDataSource
+      driverClassName: org.apache.phoenix.jdbc.PhoenixDriver
+      url: jdbc:phoenix:hd3,hd4,hd5,hd6,hd7
+      username:
+      password:
+      hikari:
+        minimum-idle: 5
+        idle-timeout: 180000
+        maximum-pool-size: 10
+        auto-commit: true
+        pool-name: MyHikariCP
+        max-lifetime: 1800000
+        connection-timeout: 30000
+        connection-test-query: SELECT 1
+mybatis:
+  type-aliases-package: com.forezp.phoenix.domain
+  mapper-locations: classpath:mapper/*.xml
+

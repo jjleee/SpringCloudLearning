@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.forezp.phoenix.dao.ProcessDataMapper">
+    <select id="findByMultipleConditions" resultType="com.forezp.phoenix.domain.ProcessData">
+        SELECT * FROM lbfs
+        WHERE lineno=#{lineNo}
+        and
+        cabno=#{cabNo}
+        and
+        cellno=#{cellNo}
+        and
+        channelno=#{channelNo}
+        and
+        currenttime BETWEEN #{time1} and #{time2}
+        ORDER BY currenttime" asc
+    </select>
+    <select id="findByKey" resultType="com.forezp.phoenix.domain.ProcessData">
+        SELECT * FROM lbfs
+        WHERE ROWKEY=#{rowKey}
+    </select>
+
+    <select id="findByTime" resultType="com.forezp.phoenix.domain.ProcessData">
+        SELECT * FROM "lbfs"
+        WHERE "CurrentTime"
+        BETWEEN #{time1} and #{time2}
+    </select>
+</mapper>
